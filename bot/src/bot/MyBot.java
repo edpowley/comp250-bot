@@ -49,7 +49,7 @@ public class MyBot extends AbstractionLayerAI {
             		&& unit.getType().canAttack) {
             		Unit enemy = findEnemyUnit(player, pgs);
             		if (enemy != null) {
-            			attack(unit, enemy);
+            			attack(unit, enemy); // asdf
             		}
             }
         }
