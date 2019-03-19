@@ -45,10 +45,25 @@ public class MyBot extends AbstractionLayerAI {
         PhysicalGameState pgs = gs.getPhysicalGameState();
         
         for (Unit unit : pgs.getUnits()) {
-            // TODO: issue commands to units
+            if (unit.getPlayer() == player
+            		&& unit.getType().canAttack) {
+            		Unit enemy = findEnemyUnit(player, pgs);
+            		if (enemy != null) {
+            			attack(unit, enemy);
+            		}
+            }
         }
         
         return translateActions(player, gs);
+    }
+    
+    private Unit findEnemyUnit(int player, PhysicalGameState pgs) {
+    		for (Unit unit : pgs.getUnits()) {
+    			if (unit.getPlayer() != player && unit.getPlayer() != -1) {
+    				return unit;
+    			}
+    		}
+    		return null;
     }
     
     @Override
